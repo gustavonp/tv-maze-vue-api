@@ -5,10 +5,6 @@ import { dataService } from '../shared';
 import * as tvMazeApi from '../shared/api/tvMazeApi';
 
 import {
-  ADD_HERO,
-  DELETE_HERO,
-  GET_HEROES,
-  UPDATE_HERO,
 
   LOAD_TVSHOWS_SUCCESS,
   BEGIN_API_CALL,
@@ -20,15 +16,11 @@ import {
 Vue.use(Vuex);
 
 const state = () => ({
-  heroes: [],
   tvShows: [],
   apiCallsInProgress: 0,
 });
 
 const mutations = {
-  [GET_HEROES](state, heroes) {
-    state.heroes = heroes;
-  },
 
   [LOAD_TVSHOWS_SUCCESS](state, tvShows){
     state.tvShows = tvShows;
@@ -46,11 +38,6 @@ const mutations = {
 const actions = {
   // actions let us get to ({ state, getters, commit, dispatch }) {
 
-  async getHeroesAction({ commit }) {
-    const heroes = await dataService.getHeroes();
-    commit(GET_HEROES, heroes);
-  },
-
   async loadTvshowsAction({ commit }, query = '') {
     const tvShows = await tvMazeApi.getTVShowNames(query);
     commit(LOAD_TVSHOWS_SUCCESS, tvShows);
@@ -59,7 +46,6 @@ const actions = {
 
 const getters = {
   // parameterized getters are not cached. so this is just a convenience to get the state.
-  getHeroById: state => id => state.heroes.find(h => h.id === id),
 };
 
 export default new Vuex.Store({

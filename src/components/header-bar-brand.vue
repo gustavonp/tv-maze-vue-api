@@ -10,7 +10,7 @@
     </a>
     <div class="navbar-item nav-home">
       <img src="../assets/tvm-header-logo.png"/>
-      <span class="tour">&nbsp;API</span>
+      <span class="api">&nbsp;API</span>
     </div>
     <button
       class="link navbar-burger burger"
